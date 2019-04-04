@@ -1,1 +1,1 @@
-This is the repository for the first alpha-blog of the Complete ROR cource
+This is the repository for the first blog at ROR
