@@ -6,7 +6,13 @@ class ArticlesController < ApplicationController
 
 def index
 	@articles = Article.paginate(page: params[:page], per_page: 5)
+	@search = params["search"]
+	 if @search.present?
+		 @title = @search["title"]
+		 @articles = Article.where(title: @title)
 end
+end
+
 
 
 
@@ -41,7 +47,7 @@ end
 
 
 def create
-	
+
 @article = Article.new(article_params)
 @article.user = current_user
 if @article.save
@@ -53,8 +59,11 @@ else
 
 end
 
-
-
+def search_articles
+	if @article = Article.all.find{|article| article.title.include?(params[:search])}
+		redirect_to article_path(@article)
+end
+end
 
 
 
